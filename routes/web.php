@@ -1,7 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Jobs\TranslateJob;
+use App\Models\Job;
 use App\Http\Controllers\{JobController, RegisteredUserController, SessionController};
+
+
+Route::get('test', function() {
+
+    $job = Job::first();
+    TranslateJob::dispatch($job);    
+
+    return 'Done';
+});
 
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
